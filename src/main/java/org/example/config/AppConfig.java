@@ -1,6 +1,5 @@
 package org.example.config;
 
-
 import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.cfg.Environment;
@@ -18,7 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
@@ -29,7 +27,6 @@ public class AppConfig {
     @Value("${spring.datasource.userName}") public String userName;
     @Value("${spring.datasource.password}") public String password;
 
-
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(){
         PropertySourcesPlaceholderConfigurer propertyConfigurer = new PropertySourcesPlaceholderConfigurer();
@@ -37,28 +34,22 @@ public class AppConfig {
         return propertyConfigurer;
     }
 
-
     @Bean
     public DataSource getDataSource(){
         HikariDataSource dataSource = new HikariDataSource();
-
         dataSource.setDriverClassName(driverClassName);
         dataSource.setJdbcUrl(url);
        dataSource.setUsername(userName);
         dataSource.setPassword(password);
         dataSource.setMaximumPoolSize(10);
-
         return dataSource;
     }
 
     private Properties hibernateProperties() {
-
         Properties properties=new Properties();
-
         properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
         properties.put(Environment.DRIVER, "com.p6spy.engine.spy.P6SpyDriver");
        properties.put(Environment.HBM2DDL_AUTO, "validate");
-
         return properties;
     }
 
@@ -68,7 +59,6 @@ public class AppConfig {
         sessionFactory.setDataSource(getDataSource());
         sessionFactory.setPackagesToScan("org.example.domain");
         sessionFactory.setHibernateProperties(hibernateProperties());
-
         return sessionFactory;
     }
 

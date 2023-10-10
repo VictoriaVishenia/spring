@@ -4,7 +4,6 @@ import org.example.domain.Task;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
- @PropertySource("classpath:application.properties")
+// @PropertySource("classpath:application.properties")
 public class TaskDAO {
     private final SessionFactory sessionFactory;
 
